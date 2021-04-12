@@ -18,11 +18,12 @@ def upload():
         df = pd.DataFrame(data)
         df2 = pd.DataFrame(df.describe(include = 'all'))
         df3 = pd.DataFrame(df.dtypes)
+        df4 = pd.DataFrame(df.isnull().sum())
         
         # df3.columns = ['Column names', 'data_types']
         return render_template('upload.html', shape=df.shape, tables = [df.to_html(classes = 'data', header = "true")], titles = df.columns.values,
         describe_table = [df2.to_html(classes = 'data', header = "true")], titles2 = df2.columns.values, dtypes_table = [df3.to_html(classes = 'data', header = "true")],
-        title3 = ['Column names', 'data_types'])
+        title3 = ['Column names', 'data_types'], null_table = [df4.to_html(classes = 'data', header = "true")])
     return render_template('upload.html')
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@
 Shape is: {{ shape }}
 <br>
 
-<button onclick="myFunction()">Show Data</button>
+<button onclick="myFunction('toggle1')">Show Data</button>
 
 <div class="table" id="toggle1">
 {% for table in tables %}
@@ -27,7 +27,7 @@ Shape is: {{ shape }}
 
 <br><br>
 
-<button onclick="myFunction2()">Show Summary</button>
+<button onclick="myFunction('toggle2')">Show Summary</button>
 
 <div class="table" id="toggle2">
     {% for table in describe_table %}
@@ -38,11 +38,22 @@ Shape is: {{ shape }}
 
 <br><br>
 
-<button onclick="myFunction3()">Show Data Types</button>
+<button onclick="myFunction('toggle3')">Show Data Types</button>
 
 <div class="table" id="toggle3">
     {% for table in dtypes_table %}
                 {{title3[loop.index]}}
+                {{ table|safe }}
+    {% endfor %}
+    </div>
+
+<br><br>
+
+<button onclick="myFunction('toggle4')">Show missing if any</button>
+
+<div class="table" id="toggle4">
+    {% for table in null_table %}
+                <!-- {{title3[loop.index]}} -->
                 {{ table|safe }}
     {% endfor %}
     </div>
@@ -52,8 +63,8 @@ Shape is: {{ shape }}
 </html>
 
 <script>
-    function myFunction() {
-      var x = document.getElementById("toggle1");
+    function myFunction(a) {
+      var x = document.getElementById(a);
       if (x.style.display === "none") {
         x.style.display = "block";
       } else {
@@ -61,21 +72,4 @@ Shape is: {{ shape }}
       }
     }
 
-    function myFunction2() {
-      var x = document.getElementById("toggle2");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-
-    function myFunction3() {
-      var x = document.getElementById("toggle3");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
 </script>
